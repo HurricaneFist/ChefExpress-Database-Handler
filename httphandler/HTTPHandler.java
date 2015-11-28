@@ -102,7 +102,7 @@ public class HTTPHandler {
 				(String) jsonRecipe.get("smallImageUrls"),
 				"FILLER INSTRUCTIONS",  // TODO: find a method of getting instructions for the recipe, if it exists
 				returnedIngredients,
-				(String) jsonRecipe.get("totalTimeInSeconds"),
+				Integer.parseInt((String) jsonRecipe.get("totalTimeInSeconds")),
 				(String) ((JSONArray) jsonRecipe.get("attributes")).get("cuisine"),
 				relevance
 			));
