@@ -96,7 +96,7 @@ public class HTTPHandler {
 				returnedIngredients.add((String) jsonIngredients.get(j)); // load the ingredients from the JSON obj into the returned obj
 
 			// the more ingredients the recipe has that the user didn't enter, the lower the relevance
-			int relevance = ingredients.size() - returnedIngredients.size();
+			int relevance = -returnedIngredients.size();
 
       // getting the data for the returned recipe object from the JSON, TODO: test it!
 			recipes.add(new Recipe(
