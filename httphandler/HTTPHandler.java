@@ -44,8 +44,6 @@ public class HTTPHandler {
 
     // parameters for the GET call
 		String params = "";
-
-		String params = "";
 		for (int i = 0; i < ingredients.size(); i++)
 		  // the ingredients argument is an arraylist of ingredients, i.e. new ArrayList(Arrays.asList("cinnamon", "apple", "butter"));
 			params += ("&allowedIngredient[]=" + ingredients.get(i));
