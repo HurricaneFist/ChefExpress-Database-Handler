@@ -10,18 +10,21 @@ import org.json.simple.parser.JSONParser;
 import java.net.*;
 import javax.net.ssl.HttpsURLConnection;
 import java.util.ArrayList;
+import java.util.Collections;
+
+// compile with: javac -cp httphandler/json-simple-1.1.1.jar httphandler/*.java
 
 public class HTTPHandler {
 
   // for now you'll need to manually enter these
-	final String ID;
-	final String KEY;
+	final static String ID;
+	final static String KEY;
 
   // max number of results returned
-	final int MAX_RESULTS = 100;
+	final static int MAX_RESULTS = 100;
 
 	// simply calling getRecipes with no specification for testing purposes
-	public static ArrayList<Recipe> getRecipes(ArrayList<String> ingredients) {
+	public static ArrayList<Recipe> getRecipes(ArrayList<String> ingredients) throws Exception {
 		return getRecipes(ingredients, "", -1, -1, -1, -1, -1);
 	}
 
@@ -103,7 +106,7 @@ public class HTTPHandler {
 				"FILLER INSTRUCTIONS",  // TODO: find a method of getting instructions for the recipe, if it exists
 				returnedIngredients,
 				Integer.parseInt((String) jsonRecipe.get("totalTimeInSeconds")),
-				(String) ((JSONArray) jsonRecipe.get("attributes")).get("cuisine"),
+				(String) ((JSONObject) jsonRecipe.get("attributes")).get("cuisine"),
 				relevance
 			));
 		}

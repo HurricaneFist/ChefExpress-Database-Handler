@@ -2,7 +2,7 @@ package httphandler;
 
 import java.util.*;
 
-public class Recipe implements Comparable {
+public class Recipe implements Comparable<Recipe> {
 
 	public String cuisine, name, imageURL, instructions;
 	public int cookingTime, relevance;
@@ -18,7 +18,6 @@ public class Recipe implements Comparable {
 		this.relevance = relevance;
 	}
 
-  @Override
 	public int compareTo(Recipe other) { 
 		return relevance - other.relevance;
 	}
