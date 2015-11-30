@@ -16,11 +16,11 @@ import java.util.Collections;
 
 public class HTTPHandler {
 
-  // for now you'll need to manually enter these
+    // for now you'll need to manually enter these
 	final static String ID;
 	final static String KEY;
 
-  // max number of results returned
+    // max number of results returned
 	final static int MAX_RESULTS = 100;
 
 	// simply calling getRecipes with no specification for testing purposes
@@ -28,7 +28,7 @@ public class HTTPHandler {
 		return getRecipes(ingredients, "", -1, -1, -1, -1, -1);
 	}
 
-  // the highly customizable version of getRecipes
+    // the highly customizable version of getRecipes
 	public static ArrayList<Recipe> getRecipes(ArrayList<String> ingredients, String cuisine, int kCalMin, int kCalMax, int carbLimit, int proteinMin,
 	                                           int timeLimit) throws Exception {
 
@@ -42,20 +42,20 @@ public class HTTPHandler {
 		if (kCalMinSpecified && kCalMaxSpecified && kCalMin > kCalMax)
 			throw new Exception("ERROR: Minimum calories specified cannot be greater than maximum calories specified.");
 
-    // initializing the ArrayList of recipes to be returned
+        // initializing the ArrayList of recipes to be returned
 		ArrayList<Recipe> recipes = new ArrayList<Recipe>();
 
-    // parameters for the GET call
+        // parameters for the GET call
 		String params = "";
 		for (int i = 0; i < ingredients.size(); i++)
 		  // the ingredients argument is an arraylist of ingredients, i.e. new ArrayList(Arrays.asList("cinnamon", "apple", "butter"));
 			params += ("&allowedIngredient[]=" + ingredients.get(i));
 
-	  // kCalMin is an integer in kilocalories (AKA food calories)
+	    // kCalMin is an integer in kilocalories (AKA food calories)
 		if (kCalMinSpecified)
 			params += "&nutrition.ENERC_KCAL.min=" + kCalMin;
-
-    // kCalMax is same as above
+   
+        // kCalMax is same as above
 		if (kCalMaxSpecified)
 			params += "&nutrition.ENERC_KCAL.max=" + kCalMax;
 
@@ -71,7 +71,7 @@ public class HTTPHandler {
 		if (proteinMinSpecified)
 			params += "&nutrition.PROCNT.min=" + proteinMin;
 
-    // a limit on how long the meal should take to prepare, in seconds
+        // a limit on how long the meal should take to prepare, in seconds
 		if (timeLimitSpecified)
 			params += "&maxTotalTimeInSeconds=" + timeLimit;
 
@@ -99,7 +99,7 @@ public class HTTPHandler {
 			// the more ingredients the recipe has that the user didn't enter, the lower the relevance
 			int relevance = -returnedIngredients.size();
 
-      // getting the data for the returned recipe object from the JSON, TODO: test it!
+            // getting the data for the returned recipe object from the JSON, TODO: test it!
 			recipes.add(new Recipe(
 				(String) jsonRecipe.get("recipeName"),
 				(String) jsonRecipe.get("smallImageUrls"),
